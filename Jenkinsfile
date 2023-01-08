@@ -41,20 +41,16 @@ pipeline {
 }
      post {
         success {
-          if (env.BRANCH_NAME == 'staging' || env.BRANCH_NAME == 'master') {
             slackSend channel: '#devops-channel',
                       color: 'good',
                       message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
-                }  
-            }    
+        }    
         failure {
-          if (env.BRANCH_NAME == 'staging' || env.BRANCH_NAME == 'master') {
             slackSend channel: '#devops-channel',
                       color: 'danger',
                       message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
-                }
-            }
-        }   
+        }
+    }   
 }
 
 
