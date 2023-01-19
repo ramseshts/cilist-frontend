@@ -9,12 +9,12 @@ pipeline {
             script{
                 if (env.BRANCH_NAME == 'staging') {
                     dir('frontend'){
-                        sh 'docker build -t rafly21/fe-cilistproject:0.0.$BUILD_NUMBER-staging .'
+                        sh 'docker build -t ramses01/cilist-frontend:0.0.$BUILD_NUMBER-staging .'
                     }
                 }
                 else if (env.BRANCH_NAME == 'master') {
                     dir('frontend'){
-                         sh 'docker build -t rafly21/fe-cilistproject:0.0.$BUILD_NUMBER-master .' 
+                         sh 'docker build -t ramses01/cilist-frontend:0.0.$BUILD_NUMBER-master .' 
                     }
                 }
                 else {
@@ -27,10 +27,10 @@ pipeline {
         steps {
             script {
              if (env.BRANCH_NAME == 'staging') {
-            sh 'docker push rafly21/fe-cilistproject:0.0.$BUILD_NUMBER-staging'
+            sh 'docker push ramses01/cilist-frontend:0.0.$BUILD_NUMBER-staging'
                 }
                 else if (env.BRANCH_NAME == 'master') {
-            sh 'docker push rafly21/fe-cilistproject:0.0.$BUILD_NUMBER-master' 
+            sh 'docker push ramses01/cilist-frontend:0.0.$BUILD_NUMBER-master' 
                 }
                 else {
                     sh 'echo Nothing to Push'
@@ -41,12 +41,12 @@ pipeline {
 }
      post {
         success {
-            slackSend channel: '#project',
+            slackSend channel: '#devops',
                       color: 'good',
                       message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }    
         failure {
-            slackSend channel: '#project',
+            slackSend channel: '#devops',
                       color: 'danger',
                       message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
