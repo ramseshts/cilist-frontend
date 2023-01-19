@@ -41,12 +41,12 @@ pipeline {
 }
      post {
         success {
-            slackSend channel: '#random',
+            slackSend channel: '#devops',
                       color: 'good',
                       message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }    
         failure {
-            slackSend channel: '#random',
+            slackSend channel: '#devops',
                       color: 'danger',
                       message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
