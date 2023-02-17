@@ -1,4 +1,4 @@
-# Cilist
+# Cilist Test
 Simple CRUD app built with MySQL, ExpressJS, React, & Node.
 
 `Database    : MySQL`
